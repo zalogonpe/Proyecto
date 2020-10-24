@@ -7,8 +7,11 @@ package Programa;
  */
 public class CuentaBancaria {
     protected int s;
+    protected String prueba;
 
  public void metodo() {
+     prueba = "prueba";
+     s = 1;
  }
 
 }
