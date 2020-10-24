@@ -6,5 +6,5 @@ package Programa;
  *
  */
 public class CuentaBancaria {
-
+    protected int s;
 }
