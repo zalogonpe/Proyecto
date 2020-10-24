@@ -6,5 +6,6 @@ package Programa;
  *
  */
 public class CuentaBancaria {
-
+ public void metodo() {
+ }
 }
