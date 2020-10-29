@@ -21,7 +21,7 @@ public class DiccionarioConHashAbierto<K, V> implements Dictionary<K, V> {
   public DiccionarioConHashAbierto() {
 	arreglo=(PositionList<Entrada<K, V>>[]) new PositionList[11];
 	for (int i=0; i<11; i++)
-		arreglo[i]=new ListaDoblementeEnlazada<Entrada<K, V>>();
+		arreglo[i]=new ListaDE<Entrada<K, V>>();
 	cantEntradas=0;
   }
   
@@ -62,7 +62,7 @@ public class DiccionarioConHashAbierto<K, V> implements Dictionary<K, V> {
     if (clave==null)
 	   throw new InvalidKeyException("La clave es inválida.");
     int bucket=hash(clave);
-	PositionList<Entry<K, V>> entradas=new ListaDoblementeEnlazada<Entry<K, V>>();
+	PositionList<Entry<K, V>> entradas=new ListaDE<Entry<K, V>>();
 	for (Entry<K, V> entrada:arreglo[bucket]) {
 		if (entrada.getKey().equals(clave))
 			entradas.addLast(entrada);
@@ -95,7 +95,7 @@ public class DiccionarioConHashAbierto<K, V> implements Dictionary<K, V> {
 		PositionList<Entrada<K, V>>[] arregloAnt=arreglo;
 		arreglo=(PositionList<Entrada<K, V>>[]) new PositionList[nuevoTamaño];
 		for (int r=0; r<arreglo.length; r++)
-			arreglo[r]=new ListaDoblementeEnlazada<Entrada<K, V>>();
+			arreglo[r]=new ListaDE<Entrada<K, V>>();
 		for (int i=0; i<arregloAnt.length; i++) {
 			listaAnt=arregloAnt[i];
 			while (!listaAnt.isEmpty()) {
@@ -171,7 +171,7 @@ public class DiccionarioConHashAbierto<K, V> implements Dictionary<K, V> {
   
   @Override
   public Iterable<Entry<K, V>> entries() {
-    PositionList<Entry<K, V>> entradas=new ListaDoblementeEnlazada<Entry<K, V>>();
+    PositionList<Entry<K, V>> entradas=new ListaDE<Entry<K, V>>();
     for (int i=0; i<arreglo.length; i++) {
     	for (Entrada<K, V> entrada:arreglo[i])
     		entradas.addLast(entrada);
