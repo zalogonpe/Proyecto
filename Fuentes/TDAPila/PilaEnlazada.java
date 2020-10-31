@@ -1,9 +1,18 @@
 package TDAPila;
 
+/**
+ * Clase que implementa una pila con nodos enlazados de acuerdo a la interfaz Stack.
+ * @author Gonzalo Perez & Juan Rapino
+ *
+ * @param <E> Tipo de dato de los elementos a almacenar en la pila.
+ */
 public class PilaEnlazada<E> implements Stack<E>{
     protected Nodo<E> head;
     protected int size;
 
+    /**
+     * Crea una pila con nodos enlazados inicialmente vacía.
+     */
     public PilaEnlazada(){
         head = null;
         size = 0;
@@ -29,8 +38,7 @@ public class PilaEnlazada<E> implements Stack<E>{
 
     @Override
     public void push(E element) {
-        Nodo<E> aux = new Nodo<E>(element, head);
-        head = aux;
+        head = new Nodo<E>(element, head);
         size++;
     }
 
@@ -40,9 +48,11 @@ public class PilaEnlazada<E> implements Stack<E>{
             throw new EmptyStackException("Pila vacia");
 
         E elemRetornar = head.getElemento();
+        Nodo<E> aux = head;
         head = head.getSiguiente();
+        aux.setElemento(null);
+        aux.setSiguiente(null);
         size--;
-
         return elemRetornar;
     }
 }

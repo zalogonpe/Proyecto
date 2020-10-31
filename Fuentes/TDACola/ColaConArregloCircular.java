@@ -1,9 +1,10 @@
 package TDACola;
+
 /**
- * Clase ColaConArregloCircular.
- * Implementa interfaz Queue, con una cola circular.
+ * Clase que implementa una cola con un arreglo circular de acuerdo a la interfaz Queue.
  * @author Gonzalo Perez & Juan Rapino.
- * @param <E>: Tipo de dato a almacenar en la cola.
+ * 
+ * @param <E>: Tipo de dato de los elementos a almacenar en la cola.
  */
 public class ColaConArregloCircular<E> implements Queue<E> {
 
@@ -11,71 +12,67 @@ public class ColaConArregloCircular<E> implements Queue<E> {
     protected int front, rear;
 
     /**
-     * Constructor de ColaConArregloCircular.
-     *
-     * Inicializa :
-     *  el arreglo de elementos con 10 espacios disponibles.
-     *  f y r en 0.
+     * Crea una cola implementada con un arreglo circular inicialmente vac�a.
      */
     public ColaConArregloCircular() {
-        q = (E[]) new Object[10];
+        q = (E[]) new Object[100];
         front = 0;
         rear = 0;
     }
 
+    @Override
     public int size() {
-        return((q.length - front + rear) % q.length) ;
+        return (q.length - front + rear) % q.length;
     }
 
+    @Override
     public boolean isEmpty() {
         return front == rear;
     }
 
+    @Override
     public E front() throws EmptyQueueException {
-        if(isEmpty()) {
-            throw new EmptyQueueException("Cola vacía.");
+        if(front == rear) {
+            throw new EmptyQueueException("La cola est� vac�a.");
         }
-        else {
-            return q[front];
-        }
+        return q[front];
     }
 
+    @Override
     public void enqueue(E element) {
-        if(size() == q.length-1) {
-            E[] aux = copiar(front);
-            rear = size();
-            front = 0;
-            q = aux;
+        if((q.length - front + rear) % q.length == q.length-1) {
+            redimensionar();
         }
         q[rear] = element;
         rear = (rear + 1) % q.length;
     }
-
+    
     /**
-     * Duplica el tamaño del arreglo de la cola circular, e inserta en el los elementos que contenía
-     * anteriormente.
-     * @param start posición en el arreglo, a partir del cual se realizará la copia de los elementos.
-     * @return arreglo de elementos con un el doble de tamaño que el que se tenía anteriormente.
+     * Redimensiona el tama�o de la cola aumentando su capacidad.
      */
-    private E[] copiar(int start) {
-        int j = 0;
-        E[] aux = (E[]) new Object[q.length*2];
-        for(int i = front; !(start == rear); i++) {
-            start = i % q.length;
-            aux[j++] = q[start];
-        }
-        return aux;
+    private void redimensionar() {
+      E[] aux=(E[]) new Object[q.length*2];
+      int ocupados=(q.length - front + rear) % q.length;
+      for (int i=0; i<ocupados; i++) {
+      	aux[i]=q[front];
+      	front=(front+1) % q.length;
+      }
+      rear=ocupados;
+      front=0;
+      q=aux;
     }
 
+    @Override
     public E dequeue() throws EmptyQueueException {
-        if( isEmpty()) {
+    	E temp;
+        if(front == rear) {
             throw new EmptyQueueException("Cola vacía.");
         }
         else {
-            E temp = q[front];
+            temp = q[front];
             q[front] = null;
             front = (front + 1) % (q.length);
-            return temp;
         }
+        return temp;
     }
 }
