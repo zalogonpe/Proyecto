@@ -2,6 +2,7 @@ package Programa;
 import TDACola.ColaConArregloCircular;
 import TDACola.EmptyQueueException;
 import TDACola.Queue;
+import TDADeque.Deque;
 import TDAPila.EmptyStackException;
 import TDAPila.PilaEnlazada;
 import TDAPila.Stack;
@@ -12,6 +13,9 @@ import TDAPila.Stack;
  *
  */
 public class CuentaBancaria {
+	//Atributos de instancia
+	private Deque historial;
+	private float saldo;
 
 	public CuentaBancaria() {
 		
