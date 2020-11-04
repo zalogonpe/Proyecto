@@ -213,24 +213,11 @@ public class Deque<E> implements java.util.Deque<E> {
 
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
-		boolean inserto = false;
-
-		if(!c.isEmpty()){
-			Iterator<? extends E> it = c.iterator();
-			E elemColeccion;
-
-			while(it.hasNext()){
-				elemColeccion = it.next();
-				lista.addLast(elemColeccion);
-			}
-		}
-
-		return inserto;
+		return false;
 	}
 
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		boolean elimino = false;
 		return false;
 	}
 
