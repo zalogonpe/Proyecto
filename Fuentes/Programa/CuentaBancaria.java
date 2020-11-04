@@ -3,6 +3,7 @@ import TDACola.ColaConArregloCircular;
 import TDACola.EmptyQueueException;
 import TDACola.Queue;
 import TDADeque.Deque;
+import TDADiccionario.Dictionary;
 import TDAPila.EmptyStackException;
 import TDAPila.PilaEnlazada;
 import TDAPila.Stack;
@@ -18,6 +19,33 @@ public class CuentaBancaria {
 	private float saldo;
 
 	public CuentaBancaria() {
+		saldo=0;
+		historial=new Deque();
+	}
+	
+	//Comandos
+	public void realizarTransaccion(float monto) {
+		
+	}
+	
+	//Consultas
+	public Transaccion masReciente() {
+		
+	}
+	
+	public Transaccion masHistorica() {
+		
+	}
+	
+	public Transaccion masCostosa() {
+		
+	}
+	
+	public float consultarSaldo() {
+		return saldo;
+	}
+	
+	public Dictionary<Float, Transaccion> mismoMonto() {
 		
 	}
 	
@@ -27,7 +55,7 @@ public class CuentaBancaria {
 	 * @param contraseña Es el código de acceso ingresado.
 	 * @return Verdadero si el código de acceso es valido, falso en caso contrario.
 	 */
-	public boolean validarContraseña(String contraseña) {
+	public boolean validarAcceso(String contraseña) {
 		try {
 			boolean esValida = contraseña.length()>1;
 			int indice = 0;
