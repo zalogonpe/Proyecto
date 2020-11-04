@@ -15,17 +15,25 @@ import TDAPila.Stack;
  */
 public class CuentaBancaria {
 	//Atributos de instancia
-	private Deque historial;
+	private Deque<Transaccion> historial;
 	private float saldo;
 
 	public CuentaBancaria() {
+		historial=new Deque<Transaccion>();
 		saldo=0;
-		historial=new Deque();
 	}
 	
 	//Comandos
+	/**
+	 * Genera una nueva transaccion agregandola al historial y modificando el saldo.
+	 * @param monto Monto de la  nueva transacción.
+	 */
 	public void realizarTransaccion(float monto) {
-		
+		Transaccion nueva=new Transaccion(monto);
+		historial.addLast(nueva);
+		if (monto>0)
+			saldo=saldo+monto;
+		else saldo=saldo-Math.abs(monto);
 	}
 	
 	//Consultas
@@ -41,6 +49,10 @@ public class CuentaBancaria {
 		
 	}
 	
+	/**
+	 * Consulta el saldo de la cuenta bancaria.
+	 * @return Retorna el saldo de la cuenta bancaria.
+	 */
 	public float consultarSaldo() {
 		return saldo;
 	}
@@ -56,13 +68,13 @@ public class CuentaBancaria {
 	 * @return Verdadero si el código de acceso es valido, falso en caso contrario.
 	 */
 	public boolean validarAcceso(String contraseña) {
+		boolean esValida = contraseña.length()>1;
+		int indice = 0;
+		char leido = '@';
+		boolean finalizoApellido = false;
+		Stack<Character> pilaAux = new PilaEnlazada<Character>();
+		Queue<Character> colaAux = new ColaConArregloCircular<Character>();
 		try {
-			boolean esValida = contraseña.length()>1;
-			int indice = 0;
-			char leido = '@';
-			boolean finalizoApellido = false;
-			Stack<Character> pilaAux = new PilaEnlazada<Character>();
-			Queue<Character> colaAux = new ColaConArregloCircular<Character>();
 			while (esValida && indice<contraseña.length()) {
 				while (!finalizoApellido && indice<contraseña.length()) {
 					leido = contraseña.charAt(indice);
@@ -94,11 +106,10 @@ public class CuentaBancaria {
 			}
 			if (indice!=contraseña.length() || !pilaAux.isEmpty() || !colaAux.isEmpty())
 				esValida = false;
-			return esValida;
 		}
 		catch (EmptyStackException | EmptyQueueException e) {
 			e.printStackTrace();
 		}
-		return false;
+		return esValida;
 	}
 }
