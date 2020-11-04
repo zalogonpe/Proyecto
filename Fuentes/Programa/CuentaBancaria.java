@@ -15,17 +15,22 @@ import TDAPila.Stack;
  */
 public class CuentaBancaria {
 	//Atributos de instancia
-	private Deque historial;
+	private Deque<Transaccion> historial;
 	private float saldo;
 
 	public CuentaBancaria() {
+		historial=new Deque<Transaccion>();
 		saldo=0;
-		historial=new Deque();
 	}
 	
 	//Comandos
+	/**
+	 * Realiza una nueva transacción en la cuenta bancaria con el monto pasado por parámetro.
+	 * @param monto Monto de la transacción.
+	 */
 	public void realizarTransaccion(float monto) {
-		
+		Transaccion nueva=new Transaccion(monto);
+		historial.addLast(nueva);
 	}
 	
 	//Consultas
@@ -40,7 +45,11 @@ public class CuentaBancaria {
 	public Transaccion masCostosa() {
 		
 	}
-	
+
+	/**
+	 * Consulta el saldo de la cuenta bancaria.
+	 * @return Retorna el saldo de la cuenta bancaria.
+	 */
 	public float consultarSaldo() {
 		return saldo;
 	}
@@ -56,13 +65,13 @@ public class CuentaBancaria {
 	 * @return Verdadero si el código de acceso es valido, falso en caso contrario.
 	 */
 	public boolean validarAcceso(String contraseña) {
+		boolean esValida = contraseña.length()>1;
+		int indice = 0;
+		char leido = '@';
+		boolean finalizoApellido = false;
+		Stack<Character> pilaAux = new PilaEnlazada<Character>();
+		Queue<Character> colaAux = new ColaConArregloCircular<Character>();
 		try {
-			boolean esValida = contraseña.length()>1;
-			int indice = 0;
-			char leido = '@';
-			boolean finalizoApellido = false;
-			Stack<Character> pilaAux = new PilaEnlazada<Character>();
-			Queue<Character> colaAux = new ColaConArregloCircular<Character>();
 			while (esValida && indice<contraseña.length()) {
 				while (!finalizoApellido && indice<contraseña.length()) {
 					leido = contraseña.charAt(indice);
@@ -94,11 +103,10 @@ public class CuentaBancaria {
 			}
 			if (indice!=contraseña.length() || !pilaAux.isEmpty() || !colaAux.isEmpty())
 				esValida = false;
-			return esValida;
 		}
 		catch (EmptyStackException | EmptyQueueException e) {
 			e.printStackTrace();
 		}
-		return false;
+		return esValida;
 	}
 }
