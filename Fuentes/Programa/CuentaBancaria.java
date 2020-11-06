@@ -25,15 +25,16 @@ public class CuentaBancaria {
 	
 	//Comandos
 	/**
-	 * Genera una nueva transaccion agregandola al historial y modificando el saldo.
-	 * @param monto Monto de la  nueva transacción.
+	 * Genera una nueva transaccion agregandola al historial y modificando el saldo de la cuenta.
+	 * @param monto Monto de la nueva transacción.
 	 */
 	public void realizarTransaccion(float monto) {
-		Transaccion nueva=new Transaccion(monto);
-		historial.addLast(nueva);
+		Transaccion nueva;
 		if (monto>0)
-			saldo=saldo+monto;
-		else saldo=saldo-Math.abs(monto);
+			nueva=new Transaccion("Deposito", monto);
+		else nueva=new Transaccion("Extracción", Math.abs(monto));
+		historial.addLast(nueva);
+		saldo=saldo+monto;
 	}
 	
 	//Consultas
@@ -46,7 +47,9 @@ public class CuentaBancaria {
 	}
 	
 	public Transaccion masCostosa() {
+		Transaccion mayor=null;
 		
+		return mayor;
 	}
 	
 	/**
