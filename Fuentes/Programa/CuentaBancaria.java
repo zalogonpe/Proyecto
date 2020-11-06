@@ -27,12 +27,16 @@ public class CuentaBancaria {
 	/**
 	 * Genera una nueva transaccion agregandola al historial y modificando el saldo de la cuenta.
 	 * @param monto Monto de la nueva transacción.
+	 * @throws BankException Si tiene fondos insuficientes para realizar la transacción.
 	 */
-	public void realizarTransaccion(float monto) {
+	public void realizarTransaccion(float monto) throws BankException {
 		Transaccion nueva;
-		if (monto>0)
-			nueva=new Transaccion("Deposito", monto);
-		else nueva=new Transaccion("Extracción", Math.abs(monto));
+		if (monto<0) {
+			if (Math.abs(monto)<500)
+				nueva=new Transaccion("Extracción", Math.abs(monto));
+			else throw new BankException("Fondos insuficientes en la cuenta.");
+		}
+		else nueva=new Transaccion("Deposito", monto);
 		historial.addLast(nueva);
 		saldo=saldo+monto;
 	}
