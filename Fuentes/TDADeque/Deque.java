@@ -9,35 +9,52 @@ import TDALista.ListaDE;
 import TDALista.Position;
 import TDALista.PositionList;
 
+/**
+ * Clase que implementa un Deque utilizando una lista doblemente enlazada.
+ * @author Gonzalo Perez & Juan Rapino
+ *
+ * @param <E> Tipo de dato de los elementos del Deque.
+ */
 public class Deque<E> implements java.util.Deque<E> {
 	//Atributos de instancia
 	private PositionList<E> lista;
 	
 	//Constructor
+	/**
+	 * Crea un Deque implementado con una lista inicialmente vacío.
+	 */
 	public Deque() {
 		lista=new ListaDE<E>();
 	}
 	
 	//Comandos
-	@Override
+	/**
+	 * Inserta un elemento al principio del Deque.
+	 */
 	public void addFirst(E elem) {
 		if (elem!=null)
 			lista.addFirst(elem);
 	}
 	
-	@Override
+	/**
+	 * Inserta un elemento al final del Deque.
+	 */
 	public void addLast(E elem) {
 		if (elem!=null)
 			lista.addLast(elem);
 	}
 	
-	@Override
+	/**
+	 * Inserta un elemento al principio del Deque.
+	 */
 	public void push(E elem) {
 		if (elem!=null)
 			lista.addFirst(elem);
 	}
 	
-	@Override
+	/**
+	 * Remueve todos los elementos almacenados en el Deque.
+	 */
 	public void clear() {
 		try {
 			Position<E> pos, posAux;
@@ -54,7 +71,10 @@ public class Deque<E> implements java.util.Deque<E> {
 	}
 	
 	//Consultas
-	@Override
+	/**
+	 * Inserta un elemento al final del Deque.
+	 * @return Verdadero si la inserción se pudo realizar, falso en caso contrario. 
+	 */
 	public boolean add(E elem) {
 		boolean inserto=false;
 		if (elem!=null) {
@@ -66,11 +86,11 @@ public class Deque<E> implements java.util.Deque<E> {
 	
 	//------------------------------------------------------------------------------------//
 	/*	@Override
-	public boolean add(E elem) throws IllegalStateException{
+	public boolean add(E elem) throws NullPointerException {
 		boolean insertado = false;
 
 		if(elem != null)
-			throw new IllegalStateException("El elemento pasado por parametro es un null");
+			throw new NullPointerExxeption("El elemento pasado por parametro es un null");
 
 		lista.addLast(elem);
 		insertado = true;
@@ -80,7 +100,10 @@ public class Deque<E> implements java.util.Deque<E> {
 	*/
 	//-------------------------------------------------------------------------------------//
 	
-	@Override
+	/**
+	 * Consulta si un elemento pertenece a los elementos almacenados en el Deque.
+	 * @return Retorna verdadero si el elemento pertenece al Deque, falso en caso contrario.
+	 */
 	public boolean contains(Object elem) {
 		boolean contiene=false;
 		try {
@@ -98,7 +121,11 @@ public class Deque<E> implements java.util.Deque<E> {
 		return contiene;
 	}
 	
-	@Override
+	/**
+	 * Consulta y retorna, sin eliminar, el elemento almacenado en el principio del Deque.
+	 * @return Retorna el elemento almacenado al principio del Deque.
+	 * @throws NoSuchElementException Si el Deque está vacío.
+	 */
 	public E element() throws NoSuchElementException {
 		E elemento;
 		try {
@@ -112,7 +139,11 @@ public class Deque<E> implements java.util.Deque<E> {
 		return elemento;
 	}
 	
-	@Override
+	/**
+	 * Consulta y retorna, sin eliminar, el primer elemento del Deque.
+	 * @return Retorna el elemento almacenado al principio del Deque.
+	 * @throws NoSuchElementException Si el Deque está vacío.
+	 */
 	public E getFirst() throws NoSuchElementException {
 		E elemento;
 		try {
@@ -126,7 +157,11 @@ public class Deque<E> implements java.util.Deque<E> {
 		return elemento;
 	}
 	
-	@Override
+	/**
+	 * Consulta y retorna, sin eliminar, el último elemento del Deque.
+	 * @return Retorna el elemento almacenado al final del Deque.
+	 * @throws NoSuchElementException Si el Deque está vacío.
+	 */
 	public E getLast() throws NoSuchElementException {
 		E elemento;
 		try {
@@ -140,7 +175,10 @@ public class Deque<E> implements java.util.Deque<E> {
 		return elemento;
 	}
 	
-	@Override
+	/**
+	 * Inserto un elemento al final del Deque.
+	 * @return Verdadero si la inserción se pudo realizar, falso en caso contrario.
+	 */
 	public boolean offer(E elem) {
 		boolean inserto=false;
 		if (elem!=null) {
@@ -150,7 +188,10 @@ public class Deque<E> implements java.util.Deque<E> {
 		return inserto;
 	}
 	
-	@Override
+	/**
+	 * Inserta un elemento al principio del Deque.
+	 * @return Verdadero si la inserción se pudo realizar, falso en caso contrario.
+	 */
 	public boolean offerFirst(E elem) {
 		boolean inserto=false;
 		if (elem!=null) {
@@ -160,7 +201,10 @@ public class Deque<E> implements java.util.Deque<E> {
 		return inserto;
 	}
 	
-	@Override
+	/**
+	 * Inserta un elemento al final del Deque.
+	 * @return Verdadero si la inserción se pudo realizar, falso en caso contrario.
+	 */
 	public boolean offerLast(E elem) {
 		boolean inserto=false;
 		if (elem!=null) {
@@ -170,20 +214,26 @@ public class Deque<E> implements java.util.Deque<E> {
 		return inserto;
 	}
 	
-	@Override
+	/**
+	 * Consulta y retorna, sin eliminar, el primer elemento del Deque.
+	 * @return Retorna el primer elemento almacenado o nulo si el Deque está vacío.
+	 */
 	public E peek() {
-		E elemEliminado=null;
+		E elem=null;
 		try {
 		if (!lista.isEmpty())
-			elemEliminado=lista.remove(lista.first());
+			elem=lista.first().element();
 		}
-		catch (InvalidPositionException | EmptyListException e) {
+		catch (EmptyListException e) {
 			e.printStackTrace();
 		}
-		return elemEliminado;
+		return elem;
 	}
 	
-	@Override
+	/**
+	 * Consulta y retorna, sin eliminar, el primer elemento del Deque.
+	 * @return Retorna el primer elemento almacenado o nulo si el Deque está vacío.
+	 */
 	public E peekFirst() {
 		E elemento=null;
 		try {
@@ -196,7 +246,10 @@ public class Deque<E> implements java.util.Deque<E> {
 		return elemento;
 	}
 	
-	@Override
+	/**
+	 * Consulta y retorna, sin eliminar, el último elemento del Deque.
+	 * @return Retorna el último elemento almacenado o nulo si el Deque está vacío.
+	 */
 	public E peekLast() {
 		E elemento=null;
 		try {
@@ -209,7 +262,10 @@ public class Deque<E> implements java.util.Deque<E> {
 		return elemento;
 	}
 	
-	@Override
+	/**
+	 * Remueve el elemento al principio del Deque retornandolo.
+	 * @return Retorna el elemento eliminado o nulo si el Deque está vacío.
+	 */
 	public E poll() {
 		E eliminado=null;
 		try {
@@ -222,7 +278,10 @@ public class Deque<E> implements java.util.Deque<E> {
 		return eliminado;
 	}
 	
-	@Override
+	/**
+	 * Remueve el primer elemento del Deque retornandolo.
+	 * @return Retorna el elemento eliminado o nulo si el Deque está vacío.
+	 */
 	public E pollFirst() {
 		E eliminado=null;
 		try {
@@ -235,7 +294,10 @@ public class Deque<E> implements java.util.Deque<E> {
 		return eliminado;
 	}
 	
-	@Override
+	/**
+	 * Remueve el último elemento del Deque retornandolo.
+	 * @return Retorna el elemento eliminado o nulo si el Deque está vacío.
+	 */
 	public E pollLast() {
 		E eliminado=null;
 		try {
@@ -248,7 +310,11 @@ public class Deque<E> implements java.util.Deque<E> {
 		return eliminado;
 	}
 	
-	@Override
+	/**
+	 * Remueve el primer elemento del Deque retornandolo.
+	 * @return Retorna el elemento eliminado.
+	 * @throws Si el Deque está vacío.
+	 */
 	public E pop() throws NoSuchElementException {
 		E elem=null;
 		try {
@@ -265,7 +331,11 @@ public class Deque<E> implements java.util.Deque<E> {
 		return elem;
 	}
 	
-	@Override
+	/**
+	 * Remueve el elemento al principio del Deque.
+	 * @return Retorna el elemento eliminado.
+	 * @throws Si el Deque está vacío.
+	 */
 	public E remove() throws NoSuchElementException {
 		E eliminado=null;
 		try {
@@ -282,11 +352,15 @@ public class Deque<E> implements java.util.Deque<E> {
 		return eliminado;
 	}
 	
-	@Override
+	/**
+	 * Remueve la primera aparición de un elemento.
+	 * @param elem Elemento a remover del Deque.
+	 * @return Verdadero si el elemento pertenece al Deque y es eliminado, falso en caso contrario. 
+	 */
 	public boolean remove(Object elem) {
 		boolean elimino=false;
+		Position<E> pos=null;
 		try {
-			Position<E> pos;
 			pos=(!lista.isEmpty()) ? lista.first() : null;
 			while (pos!=null && !elimino) {
 				if (pos.element().equals(elem)) {
@@ -302,7 +376,11 @@ public class Deque<E> implements java.util.Deque<E> {
 		return elimino;
 	}
 	
-	@Override
+	/**
+	 * Remueve el primer elemento del Deque retornandolo.
+	 * @return Retorna el elemento eliminado.
+	 * @throws NoSuchElementException Si el Deque está vacío.
+	 */
 	public E removeFirst() throws NoSuchElementException {
 		E eliminado=null;
 		try {
@@ -319,11 +397,15 @@ public class Deque<E> implements java.util.Deque<E> {
 		return eliminado;
 	}
 	
-	@Override
+	/**
+	 * Remueve la primera aparición de un elemento del Deque y lo retorna.
+	 * @param elem Elemento a remover su primer aparción.
+	 * @return Verdadero si elemento aparece y fue eliminado del Deque, falso en caso contrario.
+	 */
 	public boolean removeFirstOccurrence(Object elem) {
 		boolean elimino=false;
+		Position<E> pos=null;
 		try {
-			Position<E> pos=null;
 			if (elem!=null) {
 				pos=(!lista.isEmpty()) ? lista.first() : null;
 				while (pos!=null && !elimino) {
@@ -341,7 +423,11 @@ public class Deque<E> implements java.util.Deque<E> {
 		return elimino;
 	}
 	
-	@Override
+	/**
+	 * Remueve el último elemento del Deque retornandolo.
+	 * @return Retorna el elemento eliminado.
+	 * @throws Si el Deque está vacío.
+	 */
 	public E removeLast() throws NoSuchElementException {
 		E eliminado=null;
 		try {
@@ -358,11 +444,15 @@ public class Deque<E> implements java.util.Deque<E> {
 		return eliminado;
 	}
 	
-	@Override
+	/**
+	 * Remueve la última aparición de un elemento del Deque y lo retorna.
+	 * @param elem Elemento a remover su última aparición.
+	 * @return Verdadero si elemento aparece y fue eliminado del Deque, falso en caso contrario.
+	 */
 	public boolean removeLastOccurrence(Object elem) {
 		boolean elimino=false;
+		Position<E> pos=null;
 		try {
-			Position<E> pos=null;
 			if (elem!=null) {
 				pos=(!lista.isEmpty()) ? lista.last() : null;
 				while (pos!=null && !elimino) {
@@ -380,26 +470,61 @@ public class Deque<E> implements java.util.Deque<E> {
 		return elimino;
 	}
 	
-	@Override
+	/**
+	 * Consulta la cantidad de elementos almacenados en el Deque.
+	 * @return Retorna la cantidad de elementos almacenados.
+	 */
 	public int size() {
 		return lista.size();
 	}
 	
-	@Override
+	/**
+	 * Consulta si el Deque está vacío.
+	 * @return Retorna verdadero si el Deque está vacío, falso en caso contrario. 
+	 */
 	public boolean isEmpty() {
 		return lista.isEmpty();
 	}
-	@Override
+	
+	/**
+	 * Devuelve un iterador de todos los elementos almacenados en el Deque.
+	 * @return Retorna un iterador de todos los elementos.
+	 */
 	public Iterator<E> iterator() {
 		return lista.iterator();
 	}
 	
-	@Override
+	/**
+	 * Devuelve un iterador descendente de todos los elementos almacenados en el Deque.
+	 * @return Retotna un iterador descendente de los elementos.
+	 */
 	public Iterator<E> descendingIterator() {
 		PositionList<E> listaDescendente=new ListaDE<E>();
 		for (E elem:lista)
 			listaDescendente.addFirst(elem);
 		return listaDescendente.iterator();
+	}
+	
+	/**
+	 * Consulta todos los elementos almacenados en el Deque y los inserta en un arreglo.
+	 * @return Retorna un arreglo que contiene todos los elementos almacenados en el Deque.
+	 */
+	public Object[] toArray() {
+		E[] elementos=(E[]) new Object[lista.size()];
+		Position<E> pos=null;
+		try {
+			pos=(!lista.isEmpty()) ? lista.first() : null;
+			int i=0;
+			while (pos!=null) {
+				elementos[i]=pos.element();
+				pos=(pos!=lista.last()) ? lista.next(pos) : null;
+				i++;
+			}
+		}
+		catch (InvalidPositionException | BoundaryViolationException | EmptyListException e) {
+			e.printStackTrace();
+		}
+		return elementos;
 	}
 
 	@Override
@@ -420,11 +545,6 @@ public class Deque<E> implements java.util.Deque<E> {
 	@Override
 	public boolean retainAll(Collection<?> c) {
 		return false;
-	}
-	
-	@Override
-	public Object[] toArray() {
-		return null;
 	}
 
 	@Override
