@@ -2,8 +2,13 @@ package Programa;
 import TDACola.ColaConArregloCircular;
 import TDACola.EmptyQueueException;
 import TDACola.Queue;
+import TDAColaCP.EmptyPriorityQueueException;
+import TDAColaCP.Heap;
+import TDAColaCP.InvalidKeyException;
+import TDAColaCP.PriorityQueue;
 import TDADeque.Deque;
 import TDADiccionario.Dictionary;
+import TDALista.PositionList;
 import TDAPila.EmptyStackException;
 import TDAPila.PilaEnlazada;
 import TDAPila.Stack;
@@ -18,6 +23,9 @@ public class CuentaBancaria {
 	private Deque<Transaccion> historial;
 	private float saldo;
 
+	/**
+	 * Crea una nueva cuenta bancaria con un saldo inicial de 0 y sin historial de transacciones.
+	 */
 	public CuentaBancaria() {
 		historial=new Deque<Transaccion>();
 		saldo=0;
@@ -50,21 +58,35 @@ public class CuentaBancaria {
 		
 	}
 	
+	/**
+	 * Consulta la transaccón más costosa que se realizó en la cuenta.
+	 * @return Retorna la transacción más costosa en el historial de la cuenta.
+	 */
 	public Transaccion masCostosa() {
 		Transaccion mayor=null;
-		
+		try {
+			PriorityQueue<Float, Transaccion> transacciones=new Heap<Float, Transaccion>();
+			if (!historial.isEmpty()) {
+				for (Transaccion t:historial)
+					transacciones.insert(t.getMonto(), t);
+				mayor=transacciones.removeMin().getValue();
+			}
+		}
+		catch (InvalidKeyException | EmptyPriorityQueueException e) {
+			System.out.println(e.toString());
+		}
 		return mayor;
 	}
 	
 	/**
-	 * Consulta el saldo de la cuenta bancaria.
-	 * @return Retorna el saldo de la cuenta bancaria.
+	 * Consulta el saldo de la cuenta.
+	 * @return Retorna el saldo de la cuenta.
 	 */
 	public float consultarSaldo() {
 		return saldo;
 	}
 	
-	public Dictionary<Float, Transaccion> mismoMonto() {
+	public PositionList<Transaccion> mismoMonto() {
 		
 	}
 	
@@ -115,7 +137,7 @@ public class CuentaBancaria {
 				esValida = false;
 		}
 		catch (EmptyStackException | EmptyQueueException e) {
-			e.printStackTrace();
+			System.out.println(e.toString());
 		}
 		return esValida;
 	}
