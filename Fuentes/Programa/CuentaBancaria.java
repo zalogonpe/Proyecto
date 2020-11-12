@@ -4,17 +4,14 @@ import TDACola.EmptyQueueException;
 import TDACola.Queue;
 import TDAColaCP.EmptyPriorityQueueException;
 import TDAColaCP.Heap;
-import TDAColaCP.InvalidKeyException;
 import TDAColaCP.PriorityQueue;
 import TDADeque.Deque;
 import TDADiccionario.DiccionarioConHashAbierto;
 import TDADiccionario.Dictionary;
 import TDADiccionario.Entry;
-import TDALista.PositionList;
 import TDAPila.EmptyStackException;
 import TDAPila.PilaEnlazada;
 import TDAPila.Stack;
-
 import java.util.Iterator;
 
 /**
@@ -44,7 +41,7 @@ public class CuentaBancaria {
 	public void realizarTransaccion(float monto) throws BankException {
 		Transaccion nueva;
 		if (monto<0) {
-			if (Math.abs(monto)<500)
+			if (saldo+monto>=-5000)
 				nueva=new Transaccion("Extracción", Math.abs(monto));
 			else throw new BankException("Fondos insuficientes en la cuenta.");
 		}
@@ -54,24 +51,31 @@ public class CuentaBancaria {
 	}
 	
 	//Consultas
-
-	public Transaccion masReciente() throws BankException{
+	/**
+	 * Consulta la transacción más reciente que se realizó en la cuenta.
+	 * @return Retorna la transacción más reciente de la cuenta.
+	 * @throws BankException Si el historial de transacciones de la cuenta está vacío.
+	 */
+	public Transaccion masReciente() throws BankException {
 		if(historial.isEmpty())
-			throw new BankException("Historial vacio");
-
+			throw new BankException("No se han realizado transacciones en la cuenta.");
 		return historial.getLast();
 	}
 
-	public Transaccion masHistorica() throws BankException{
+	/**
+	 * Consulta la transacción más historica que se realizó en la cuenta..
+	 * @return Retorna la transacción más historica de la cuenta.
+	 * @throws BankException Si el istorial de transacciones de la cuenta está vacío.
+	 */
+	public Transaccion masHistorica() throws BankException {
 		if(historial.isEmpty())
-			throw new BankException("Historial vacio");
-
+			throw new BankException("No se han realizado transacciones en la cuenta.");
 		return historial.getFirst();
 	}
 	
 	/**
 	 * Consulta la transaccón más costosa que se realizó en la cuenta.
-	 * @return Retorna la transacción más costosa en el historial de la cuenta.
+	 * @return Retorna la transacción más costosa de la cuenta.
 	 */
 	public Transaccion masCostosa() {
 		Transaccion mayor=null;
@@ -83,7 +87,7 @@ public class CuentaBancaria {
 				mayor=transacciones.removeMin().getValue();
 			}
 		}
-		catch (InvalidKeyException | EmptyPriorityQueueException e) {
+		catch (TDAColaCP.InvalidKeyException | EmptyPriorityQueueException e) {
 			System.out.println(e.toString());
 		}
 		return mayor;
@@ -97,39 +101,32 @@ public class CuentaBancaria {
 		return saldo;
 	}
 
-
 	/**
-	 * Retorna una colección iterable que contiene todas las entradas con clave igual al monto dado.
-	 * @param monto clave de las entradas a buscar.
-	 * @return Coleccion iterable de entradas con clave igual al monto dado.
+	 * Retorna una colección iterable que contiene todas las transacciones realizadas con igual monto al dado.
+	 * @param monto Clave de las entradas a buscar.
+	 * @return Coleccion iterable de transacciones monto igual al dado.
 	 */
 	//T(n)= c1+c2+c3+c4+c5+  n(c6+c7+c8+c9)+ (el orden de findAll, creo que era 'n' peor caso no me acuerdo) + c10 = 2n ---> O(n)
 	public Iterable<Entry<Float, Transaccion>> mismoMonto(float monto) {
-
 		Dictionary<Float, Transaccion> diccionarioDeque = new DiccionarioConHashAbierto<Float, Transaccion>();
 		Iterable<Entry<Float,Transaccion>> mismoMonto = null;
-		Iterator<Transaccion> it = historial.iterator();
+		Iterator<Transaccion> it;
 		Transaccion transaccion;
-
-		if(!historial.isEmpty()) {		//si el historial esta vacio, entonces no hago nada
-			try {
-
-				while (it.hasNext()) {	//recorro el historial y paso los elementos de este al diccionario
-					transaccion = it.next();
-					diccionarioDeque.insert(transaccion.getMonto(), transaccion);
-				}
-
-				mismoMonto = diccionarioDeque.findAll(monto);  //le asigno una coleccion iterable con todas las transacciones (valor) con mismo monto (clave)
-
-			}catch(TDADiccionario.InvalidKeyException e){
-				e.printStackTrace();
-			}
-
-		} //end if
-
+		try {
+			if(!historial.isEmpty()) {		//si el historial esta vacio, entonces no hago nada
+					it = historial.iterator();
+					while (it.hasNext()) {	//recorro el historial y paso los elementos de este al diccionario
+						transaccion = it.next();
+						diccionarioDeque.insert(transaccion.getMonto(), transaccion);
+					}
+					mismoMonto = diccionarioDeque.findAll(monto);  //le asigno una coleccion iterable con todas las transacciones (valor) con mismo monto (clave)
+			} //end if
+		}
+		catch (TDADiccionario.InvalidKeyException e) {
+			System.out.println(e.toString());
+		}
 		return mismoMonto;
 	}
-
 
 	/**
 	 * Verifica si la contraseña pasada por parámetro respeta el formato especificado.
