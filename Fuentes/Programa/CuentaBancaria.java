@@ -7,11 +7,15 @@ import TDAColaCP.Heap;
 import TDAColaCP.InvalidKeyException;
 import TDAColaCP.PriorityQueue;
 import TDADeque.Deque;
+import TDADiccionario.DiccionarioConHashAbierto;
 import TDADiccionario.Dictionary;
+import TDADiccionario.Entry;
 import TDALista.PositionList;
 import TDAPila.EmptyStackException;
 import TDAPila.PilaEnlazada;
 import TDAPila.Stack;
+
+import java.util.Iterator;
 
 /**
  * Clase que modela las funciones del sistema.
@@ -50,12 +54,19 @@ public class CuentaBancaria {
 	}
 	
 	//Consultas
-	public Transaccion masReciente() {
-		
+
+	public Transaccion masReciente() throws BankException{
+		if(historial.isEmpty())
+			throw new BankException("Historial vacio");
+
+		return historial.getLast();
 	}
-	
-	public Transaccion masHistorica() {
-		
+
+	public Transaccion masHistorica() throws BankException{
+		if(historial.isEmpty())
+			throw new BankException("Historial vacio");
+
+		return historial.getFirst();
 	}
 	
 	/**
@@ -85,11 +96,41 @@ public class CuentaBancaria {
 	public float consultarSaldo() {
 		return saldo;
 	}
-	
-	public PositionList<Transaccion> mismoMonto() {
-		
+
+
+	/**
+	 * Retorna una colección iterable que contiene todas las entradas con clave igual al monto dado.
+	 * @param monto clave de las entradas a buscar.
+	 * @return Coleccion iterable de entradas con clave igual al monto dado.
+	 */
+	//T(n)= c1+c2+c3+c4+c5+  n(c6+c7+c8+c9)+ (el orden de findAll, creo que era 'n' peor caso no me acuerdo) + c10 = 2n ---> O(n)
+	public Iterable<Entry<Float, Transaccion>> mismoMonto(float monto) {
+
+		Dictionary<Float, Transaccion> diccionarioDeque = new DiccionarioConHashAbierto<Float, Transaccion>();
+		Iterable<Entry<Float,Transaccion>> mismoMonto = null;
+		Iterator<Transaccion> it = historial.iterator();
+		Transaccion transaccion;
+
+		if(!historial.isEmpty()) {		//si el historial esta vacio, entonces no hago nada
+			try {
+
+				while (it.hasNext()) {	//recorro el historial y paso los elementos de este al diccionario
+					transaccion = it.next();
+					diccionarioDeque.insert(transaccion.getMonto(), transaccion);
+				}
+
+				mismoMonto = diccionarioDeque.findAll(monto);  //le asigno una coleccion iterable con todas las transacciones (valor) con mismo monto (clave)
+
+			}catch(TDADiccionario.InvalidKeyException e){
+				e.printStackTrace();
+			}
+
+		} //end if
+
+		return mismoMonto;
 	}
-	
+
+
 	/**
 	 * Verifica si la contraseña pasada por parámetro respeta el formato especificado.
 	 * De ser así, se brinda acceso al sistema, en caso contrario la aplicación permanece bloqueada. 
