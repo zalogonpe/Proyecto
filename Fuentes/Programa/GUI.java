@@ -136,7 +136,7 @@ public class GUI extends JFrame {
 							mensaje.showMessageDialog(null, "Se extrajeron de la cuenta $"+Math.abs(monto), "Confirmación", JOptionPane.INFORMATION_MESSAGE);
 					}
 				}
-				else mensaje.showMessageDialog(null, "No se ingreso un monto válido.", "Aviso", JOptionPane.WARNING_MESSAGE);
+				else mensaje.showMessageDialog(null, "No se ingreso un monto válido.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 			}
 			catch (BankException e) {
 				mensaje.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -157,24 +157,30 @@ public class GUI extends JFrame {
 			}*/
 			if (evento.getActionCommand().equals("Costosa")) {
 				transaccion=cuenta.masCostosa();
-				mensaje.showMessageDialog(null, transaccion.getTipo()+": $"+transaccion.getMonto(), "Operación más costosa", JOptionPane.INFORMATION_MESSAGE);
+				if (transaccion!=null)
+					mensaje.showMessageDialog(null, transaccion.getTipo()+": $"+transaccion.getMonto(), "Operación más costosa", JOptionPane.INFORMATION_MESSAGE);
+				else mensaje.showMessageDialog(null, "No hay operaciones registradas para consultar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 			}
 		}
 	}
 	private class OyenteMonto implements ActionListener {
 		public void actionPerformed(ActionEvent evento) {
-			String montoEntrada, operaciones;
 			float monto;
+			String operaciones="";
+			Iterable<Entry<Float, Transaccion>> listadoOperaciones;
 			JOptionPane mensaje=new JOptionPane();
-			montoEntrada=mensaje.showInputDialog(null, "Ingrese el monto de las transacciónes que desea consultar:", "", JOptionPane.QUESTION_MESSAGE);
+			String montoEntrada=mensaje.showInputDialog(null, "Ingrese el monto de las transacciónes que desea consultar:", "", JOptionPane.QUESTION_MESSAGE);
 			if (montoEntrada!=null && !montoEntrada.equals("")) {
 				monto=Float.valueOf(montoEntrada);
-				operaciones="";
-				for (Entry<Float, Transaccion> transaccion:cuenta.mismoMonto(monto))
-					operaciones=operaciones+transaccion.getValue().getTipo()+": $"+transaccion.getKey()+"\n";
-				mensaje.showMessageDialog(null, operaciones, "Operaciones con el mismo monto", JOptionPane.PLAIN_MESSAGE);
+				listadoOperaciones=cuenta.mismoMonto(monto);
+				if (listadoOperaciones!=null) {
+					for (Entry<Float, Transaccion> transaccion:listadoOperaciones)
+						operaciones=operaciones+transaccion.getValue().getTipo()+": $"+transaccion.getKey()+"\n";
+					mensaje.showMessageDialog(null, operaciones, "Operaciones con el mismo monto", JOptionPane.PLAIN_MESSAGE);
+				}
+				else mensaje.showMessageDialog(null, "No hay operaciones registradas para consultar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 			}
-			else mensaje.showMessageDialog(null, "No se ingreso un monto válido.", "Aviso", JOptionPane.WARNING_MESSAGE);
+			else mensaje.showMessageDialog(null, "No se ingreso un monto válido.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 }
