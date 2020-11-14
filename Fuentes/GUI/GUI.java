@@ -1,9 +1,10 @@
-package Programa;
+package GUI;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import javax.swing.*;
 import Excepciones.BankException;
+import Programa.*;
 import TDADiccionario.Entry;
 
 public class GUI extends JFrame {
@@ -19,17 +20,15 @@ public class GUI extends JFrame {
 	public GUI() {
 		super("BNS");
 		getContentPane().setLayout(new BorderLayout());
-		setSize(new Dimension(925, 400));
+		setSize(new Dimension(925, 405));
 		setResizable(false);
+		setIconImage(new ImageIcon("Fondo GUI.jpg").getImage());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		cuenta=new CuentaBancaria();
 		armarComponentes();
 		armarPaneles();
 		getContentPane().add(panelPrincipal);
-		/*getContentPane().add(panelAcceso, BorderLayout.NORTH);
-		getContentPane().add(etiquetaSaldo, BorderLayout.WEST);
-		getContentPane().add(panelBotones, BorderLayout.SOUTH);*/
 	}
 	
 	private void armarComponentes() {
@@ -82,7 +81,7 @@ public class GUI extends JFrame {
 		panelBotones.add(botonMonto);
 		
 		try {
-			panelPrincipal=new PanelConFondo("C:\\Users\\zalog\\Pictures\\Fondo GUI.gif");
+			panelPrincipal=new PanelConFondo("Fondo GUI.jpg");
 			panelPrincipal.setLayout(new BorderLayout());
 			panelPrincipal.add(panelAcceso, BorderLayout.NORTH);
 			panelPrincipal.add(etiquetaSaldo, BorderLayout.WEST);
