@@ -67,7 +67,7 @@ public class CuentaBancaria {
 	/**
 	 * Consulta la transacción más historica que se realizó en la cuenta..
 	 * @return Retorna la transacción más historica de la cuenta.
-	 * @throws BankException Si el istorial de transacciones de la cuenta está vacío.
+	 * @throws BankException Si el historial de transacciones de la cuenta está vacío.
 	 */
 	public Transaccion masHistorica() throws BankException {
 		if(historial.isEmpty())
@@ -104,9 +104,9 @@ public class CuentaBancaria {
 	}
 
 	/**
-	 * Retorna una colección iterable que contiene todas las transacciones realizadas con igual monto al dado.
+	 * Consulta todas las transacciones realizadas con igual monto al dado y los retorna.
 	 * @param monto Clave de las entradas a buscar.
-	 * @return Coleccion iterable de transacciones monto igual al dado.
+	 * @return Retorna una coleccion iterable de transacciones monto igual al dado.
 	 */
 	//T(n)= c1+c2+c3+c4+c5+  n(c6+c7+c8+c9)+ (el orden de findAll, creo que era 'n' peor caso no me acuerdo) + c10 = 2n ---> O(n)
 	public Iterable<Entry<Float, Transaccion>> mismoMonto(float monto) {

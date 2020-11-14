@@ -1,5 +1,9 @@
 package TDADiccionario;
-import Excepciones.*;
+import Excepciones.BoundaryViolationException;
+import Excepciones.EmptyListException;
+import Excepciones.InvalidEntryException;
+import Excepciones.InvalidKeyException;
+import Excepciones.InvalidPositionException;
 import TDALista.*;
 
 /**

@@ -1,5 +1,4 @@
 package TDACola;
-
 import Excepciones.EmptyQueueException;
 
 /**

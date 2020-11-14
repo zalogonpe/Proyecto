@@ -1,5 +1,4 @@
 package TDAColaCP;
-
 import Excepciones.EmptyPriorityQueueException;
 import Excepciones.InvalidKeyException;
 

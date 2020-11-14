@@ -1,13 +1,13 @@
 package Programa;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import javax.swing.*;
-
 import Excepciones.BankException;
 import TDADiccionario.Entry;
 
 public class GUI extends JFrame {
-	private JPanel panelAcceso, panelBotones;
+	private JPanel panelAcceso, panelBotones, panelPrincipal;
 	private JPasswordField cajaContraseña;
 	private JLabel etiquetaSaldo;
 	private JButton botonIngresar, botonSalir, botonRealizar, botonReciente, botonHistorica, botonCostosa, botonMonto;
@@ -17,18 +17,19 @@ public class GUI extends JFrame {
 	 * Create the application.
 	 */
 	public GUI() {
-		super("Banco UNS");
+		super("BNS");
 		getContentPane().setLayout(new BorderLayout());
-		setSize(new Dimension(925, 500));
+		setSize(new Dimension(925, 400));
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		cuenta=new CuentaBancaria();
 		armarComponentes();
 		armarPaneles();
-		getContentPane().add(panelAcceso, BorderLayout.NORTH);
+		getContentPane().add(panelPrincipal);
+		/*getContentPane().add(panelAcceso, BorderLayout.NORTH);
 		getContentPane().add(etiquetaSaldo, BorderLayout.WEST);
-		getContentPane().add(panelBotones, BorderLayout.SOUTH);
+		getContentPane().add(panelBotones, BorderLayout.SOUTH);*/
 	}
 	
 	private void armarComponentes() {
@@ -67,14 +68,29 @@ public class GUI extends JFrame {
 	}
 	
 	private void armarPaneles() {
+		//Creo el panel de acceso al sistema y le agrego los componentes correspondientes.
 		panelAcceso=new JPanel();
+		panelAcceso.setOpaque(false);
 		panelAcceso.add(cajaContraseña);
 		panelAcceso.add(botonIngresar); panelAcceso.add(botonSalir);
 		
+		//Creo el panel de botones y les agrego los botones correspondientes.
 		panelBotones=new JPanel();
+		panelBotones.setOpaque(false);
 		panelBotones.add(botonRealizar); panelBotones.add(botonReciente);
 		panelBotones.add(botonHistorica); panelBotones.add(botonCostosa);
 		panelBotones.add(botonMonto);
+		
+		try {
+			panelPrincipal=new PanelConFondo("C:\\Users\\zalog\\Pictures\\Fondo GUI.gif");
+			panelPrincipal.setLayout(new BorderLayout());
+			panelPrincipal.add(panelAcceso, BorderLayout.NORTH);
+			panelPrincipal.add(etiquetaSaldo, BorderLayout.WEST);
+			panelPrincipal.add(panelBotones, BorderLayout.SOUTH);
+		}
+		catch (IOException e) {
+			System.out.println(e.toString());
+		}
 	}
 	
 	/**
@@ -149,19 +165,24 @@ public class GUI extends JFrame {
 		public void actionPerformed(ActionEvent evento) {
 			Transaccion transaccion;
 			JOptionPane mensaje=new JOptionPane();
-			/*if (evento.getActionCommand().equals("Reciente")) {
-				transaccion=cuenta.masReciente();
-				mensaje.showMessageDialog(null, transaccion.getTipo()+": $"+transaccion.getMonto(), "Operación más reciente", JOptionPane.INFORMATION_MESSAGE);
+			try {
+				if (evento.getActionCommand().equals("Reciente")) {
+					transaccion=cuenta.masReciente();
+					mensaje.showMessageDialog(null, transaccion.getTipo()+": $"+transaccion.getMonto(), "Operación más reciente", JOptionPane.INFORMATION_MESSAGE);
+				}
+				if (evento.getActionCommand().equals("Historica")) {
+					transaccion=cuenta.masHistorica();
+					mensaje.showMessageDialog(null, transaccion.getTipo()+": $"+transaccion.getMonto(), "Operación más historica", JOptionPane.INFORMATION_MESSAGE);
+				}
+				if (evento.getActionCommand().equals("Costosa")) {
+					transaccion=cuenta.masCostosa();
+					if (transaccion!=null)
+						mensaje.showMessageDialog(null, transaccion.getTipo()+": $"+transaccion.getMonto(), "Operación más costosa", JOptionPane.INFORMATION_MESSAGE);
+					else mensaje.showMessageDialog(null, "No hay operaciones registradas para consultar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+				}
 			}
-			if (evento.getActionCommand().equals("Historica")) {
-				transaccion=cuenta.masHistorica();
-				mensaje.showMessageDialog(null, transaccion.getTipo()+": $"+transaccion.getMonto(), "Operación más historica", JOptionPane.INFORMATION_MESSAGE);
-			}*/
-			if (evento.getActionCommand().equals("Costosa")) {
-				transaccion=cuenta.masCostosa();
-				if (transaccion!=null)
-					mensaje.showMessageDialog(null, transaccion.getTipo()+": $"+transaccion.getMonto(), "Operación más costosa", JOptionPane.INFORMATION_MESSAGE);
-				else mensaje.showMessageDialog(null, "No hay operaciones registradas para consultar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+			catch (BankException e) {
+				mensaje.showMessageDialog(null, e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
 			}
 		}
 	}
@@ -178,7 +199,9 @@ public class GUI extends JFrame {
 				if (listadoOperaciones!=null) {
 					for (Entry<Float, Transaccion> transaccion:listadoOperaciones)
 						operaciones=operaciones+transaccion.getValue().getTipo()+": $"+transaccion.getKey()+"\n";
-					mensaje.showMessageDialog(null, operaciones, "Operaciones con el mismo monto", JOptionPane.PLAIN_MESSAGE);
+					if (!operaciones.equals(""))
+						mensaje.showMessageDialog(null, operaciones, "Operaciones con el mismo monto", JOptionPane.PLAIN_MESSAGE);
+					else mensaje.showMessageDialog(null, "No se encontraron operaciones registradas con el monto ingresado para consultar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 				}
 				else mensaje.showMessageDialog(null, "No hay operaciones registradas para consultar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 			}
