@@ -1,5 +1,8 @@
 package TDAColaCP;
 
+import Excepciones.EmptyPriorityQueueException;
+import Excepciones.InvalidKeyException;
+
 /**
  * Interface PriorityQueue
  * @author Cátedra de Estructuras de Datos, Departamento de Cs. e Ing. de la Computación, UNS.

@@ -1,4 +1,4 @@
-package TDAPila;
+package Excepciones;
 
 /**
  * Modela la excepción que se produce ante una pila vacía.

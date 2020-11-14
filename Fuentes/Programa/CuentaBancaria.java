@@ -1,15 +1,17 @@
 package Programa;
+import Excepciones.BankException;
+import Excepciones.InvalidKeyException;
 import TDACola.ColaConArregloCircular;
-import TDACola.EmptyQueueException;
+import Excepciones.EmptyQueueException;
 import TDACola.Queue;
-import TDAColaCP.EmptyPriorityQueueException;
+import Excepciones.EmptyPriorityQueueException;
 import TDAColaCP.Heap;
 import TDAColaCP.PriorityQueue;
 import TDADeque.Deque;
 import TDADiccionario.DiccionarioConHashAbierto;
 import TDADiccionario.Dictionary;
 import TDADiccionario.Entry;
-import TDAPila.EmptyStackException;
+import Excepciones.EmptyStackException;
 import TDAPila.PilaEnlazada;
 import TDAPila.Stack;
 import java.util.Iterator;
@@ -87,7 +89,7 @@ public class CuentaBancaria {
 				mayor=transacciones.removeMin().getValue();
 			}
 		}
-		catch (TDAColaCP.InvalidKeyException | EmptyPriorityQueueException e) {
+		catch (InvalidKeyException | EmptyPriorityQueueException e) {
 			System.out.println(e.toString());
 		}
 		return mayor;
@@ -122,7 +124,7 @@ public class CuentaBancaria {
 					mismoMonto = diccionarioDeque.findAll(monto);  //le asigno una coleccion iterable con todas las transacciones (valor) con mismo monto (clave)
 			} //end if
 		}
-		catch (TDADiccionario.InvalidKeyException e) {
+		catch (InvalidKeyException e) {
 			System.out.println(e.toString());
 		}
 		return mismoMonto;

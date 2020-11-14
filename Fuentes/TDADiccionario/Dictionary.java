@@ -1,5 +1,8 @@
 package TDADiccionario;
 
+import Excepciones.InvalidEntryException;
+import Excepciones.InvalidKeyException;
+
 public interface Dictionary<K,V> {
 	/**
 	 * Consulta el número de entradas del diccionario.

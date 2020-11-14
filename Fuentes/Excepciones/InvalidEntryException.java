@@ -1,4 +1,4 @@
-package TDADiccionario;
+package Excepciones;
 
 /**
  * Modela la excepción que se produce ante una entrada que es inválida.

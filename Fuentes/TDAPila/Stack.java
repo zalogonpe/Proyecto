@@ -1,5 +1,7 @@
 package TDAPila;
 
+import Excepciones.EmptyStackException;
+
 /**
  * Interface Stack
  * @author Cátedra de Estructuras de Datos, Departamento de Cs. e Ing. de la Computación, UNS.
@@ -22,7 +24,7 @@ public interface Stack<E> {
 	/**
 	 * Examina el elemento que se encuentra en el tope de la pila.
 	 * @return Elemento que se encuentra en el tope de la pila.
-	 * @throws EmptyStackException si la pila está vacía. 
+	 * @throws EmptyStackException si la pila está vacía.
 	 */
 	public E top()throws EmptyStackException;
 

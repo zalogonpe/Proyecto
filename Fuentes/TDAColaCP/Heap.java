@@ -1,4 +1,7 @@
 package TDAColaCP;
+import Excepciones.EmptyPriorityQueueException;
+import Excepciones.InvalidKeyException;
+
 import java.util.Comparator;
 
 /**

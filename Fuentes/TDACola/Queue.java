@@ -1,4 +1,7 @@
 package TDACola;
+
+import Excepciones.EmptyQueueException;
+
 /**
  * Interface Queue
  * @author Cátedra de Estructuras de Datos, Departamento de Cs. e Ing. de la Computación, UNS.

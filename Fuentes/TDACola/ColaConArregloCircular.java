@@ -1,5 +1,7 @@
 package TDACola;
 
+import Excepciones.EmptyQueueException;
+
 /**
  * Clase que implementa una cola con un arreglo circular de acuerdo a la interfaz Queue.
  * @author Gonzalo Perez & Juan Rapino.

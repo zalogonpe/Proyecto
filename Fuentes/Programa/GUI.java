@@ -2,6 +2,8 @@ package Programa;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import Excepciones.BankException;
 import TDADiccionario.Entry;
 
 public class GUI extends JFrame {

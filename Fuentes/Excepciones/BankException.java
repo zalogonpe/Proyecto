@@ -1,4 +1,4 @@
-package Programa;
+package Excepciones;
 
 /**
  * Modela una excepción que se produce ante falta de fondos en la cuenta. 

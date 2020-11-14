@@ -1,5 +1,7 @@
 package TDAPila;
 
+import Excepciones.EmptyStackException;
+
 /**
  * Clase que implementa una pila con nodos enlazados de acuerdo a la interfaz Stack.
  * @author Gonzalo Perez & Juan Rapino

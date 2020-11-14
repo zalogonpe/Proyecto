@@ -1,4 +1,5 @@
 package TDADiccionario;
+import Excepciones.*;
 import TDALista.*;
 
 /**

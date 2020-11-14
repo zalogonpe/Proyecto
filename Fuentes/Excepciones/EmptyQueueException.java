@@ -1,4 +1,4 @@
-package TDACola;
+package Excepciones;
 
 /**
  * Modela la excepción que se produce ante una cola vacía.
