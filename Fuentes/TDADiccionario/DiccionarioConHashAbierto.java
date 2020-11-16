@@ -15,8 +15,8 @@ import TDALista.*;
  */
 public class DiccionarioConHashAbierto<K, V> implements Dictionary<K, V> {
   //Atributos de instancia
-  protected PositionList<Entrada<K, V>>[] arreglo;
-  protected int cantEntradas;
+  private PositionList<Entrada<K, V>>[] arreglo;
+  private int cantEntradas;
   private final float fc=0.9f;
 		  
   //Constructor
@@ -24,7 +24,7 @@ public class DiccionarioConHashAbierto<K, V> implements Dictionary<K, V> {
    * Crea un diccionario vacío con capacidad inicial para 11 elementos.
    */
   public DiccionarioConHashAbierto() {
-	arreglo=(PositionList<Entrada<K, V>>[]) new PositionList[11];
+	arreglo=(PositionList<Entrada<K, V>>[]) new ListaDE[11];
 	for (int i=0; i<11; i++)
 		arreglo[i]=new ListaDE<Entrada<K, V>>();
 	cantEntradas=0;

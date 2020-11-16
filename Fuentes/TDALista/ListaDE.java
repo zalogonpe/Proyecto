@@ -11,8 +11,8 @@ import java.util.Iterator;
  * @param <E> Tipo de dato de los elementos de la lista.
  */
 public class ListaDE<E> implements PositionList<E> {
-    protected NodoD<E> header,trailer;
-    protected int size;
+	private NodoD<E> header,trailer;
+	private int size;
 
     /**
      * Crea una lista doblemente enlazada inicialmente vacía.
@@ -140,6 +140,12 @@ public class ListaDE<E> implements PositionList<E> {
         return list;
     }
 
+    /**
+     * Comprueba si la posición es válida para está lista y la convierte en nodo de ser válida.
+     * @param p Posición a validar.
+     * @return Nodo en la posición pasada por parámetro.
+     * @throws InvalidPositionException Si la posición es inválida.
+     */
     private NodoD<E> checkPosition(Position<E> p) throws InvalidPositionException {
         try {
         	if (size==0)

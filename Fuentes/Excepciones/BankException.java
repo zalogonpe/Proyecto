@@ -2,7 +2,7 @@ package Excepciones;
 
 /**
  * Modela una excepción que se produce ante falta de fondos en la cuenta. 
- * @author Gonzalo Perez
+ * @author Gonzalo Perez & Juan Rapino
  *
  */
 public class BankException extends Exception {

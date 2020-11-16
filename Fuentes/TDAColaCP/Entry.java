@@ -2,7 +2,7 @@ package TDAColaCP;
 
 /**
  * Interafaz Entry que brinda los métodos que puede realizar una entrada.
- * @author Gonzalo  Perez
+ * @author Gonzalo Perez & Juan Rapino
  *
  * @param <K> Tipo de dato de la clave de la entrada.
  * @param <V> Tipo de dato del valor de la entrada.

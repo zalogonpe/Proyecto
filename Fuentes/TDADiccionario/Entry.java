@@ -1,7 +1,7 @@
 package TDADiccionario;
 
 /**
- * Interfaz Entry. Brinda los métodos que puede realizar una entrada.
+ * Interfaz Entry que brinda los métodos que puede realizar una entrada.
  * @author Gonzalo Perez
  *
  * @param <K> Tipo de dato de la clave de la entrada.

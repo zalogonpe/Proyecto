@@ -27,7 +27,7 @@ public class CuentaBancaria {
 	private float saldo;
 
 	/**
-	 * Crea una nueva cuenta bancaria con un saldo inicial de 0 y sin historial de transacciones.
+	 * Crea una nueva cuenta bancaria con un saldo inicial de 0 y un historial de transacciones vacío.
 	 */
 	public CuentaBancaria() {
 		historial=new Deque<Transaccion>();
@@ -65,8 +65,8 @@ public class CuentaBancaria {
 	}
 
 	/**
-	 * Consulta la transacción más historica que se realizó en la cuenta..
-	 * @return Retorna la transacción más historica de la cuenta.
+	 * Consulta la transacción más histórica que se realizó en la cuenta.
+	 * @return Retorna la transacción más histórica de la cuenta.
 	 * @throws BankException Si el historial de transacciones de la cuenta está vacío.
 	 */
 	public Transaccion masHistorica() throws BankException {
@@ -144,7 +144,9 @@ public class CuentaBancaria {
 		Stack<Character> pilaAux = new PilaEnlazada<Character>();
 		Queue<Character> colaAux = new ColaConArregloCircular<Character>();
 		try {
+			//Ciclo que recorre la cadena en su totalidad
 			while (esValida && indice<contraseña.length()) {
+				//Ciclo que recorrer la primera parte de la cadena(A)
 				while (!finalizoApellido && indice<contraseña.length()) {
 					leido = contraseña.charAt(indice);
 					indice++;
@@ -154,6 +156,7 @@ public class CuentaBancaria {
 				}
 				if (!finalizoApellido)
 					esValida = false;
+				//Ciclo que recorre la primera aparición de la cadena A' después de que aparece una 'x'
 				while (esValida && indice<contraseña.length() && !pilaAux.isEmpty()) {
 					leido = contraseña.charAt(indice);
 					indice++;
@@ -163,6 +166,7 @@ public class CuentaBancaria {
 				}
 				if (!(indice<contraseña.length()) || !pilaAux.isEmpty())
 					esValida = false;
+				//Ciclo que recorre la segunda aparición de la cadena A'
 				while (esValida && indice<contraseña.length() && !colaAux.isEmpty()) {
 					leido = contraseña.charAt(indice);
 					indice++;

@@ -8,8 +8,8 @@ import Excepciones.EmptyStackException;
  * @param <E> Tipo de dato de los elementos a almacenar en la pila.
  */
 public class PilaEnlazada<E> implements Stack<E>{
-    protected Nodo<E> head;
-    protected int size;
+	private Nodo<E> head;
+	private int size;
 
     /**
      * Crea una pila con nodos enlazados inicialmente vacía.

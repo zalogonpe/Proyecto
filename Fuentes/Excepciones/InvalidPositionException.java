@@ -2,7 +2,7 @@ package Excepciones;
 
 /**
  * Modela la excepción que se produce ante una posición que es inválida.
- * @author Gonzalo Perez
+ * @author Gonzalo Perez & Juan Rapino
  */
 public class InvalidPositionException extends Exception {
   /**

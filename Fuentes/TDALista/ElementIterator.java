@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
  * Clase que representa a un iterador de elementos para una lista.
  * @author Gonzalo Perez & Juan Rapino.
  *
- * @param <E> Tipode dato de los elementos asociados a las posiciones a iterar
+ * @param <E> Tipo de dato de los elementos asociados a las posiciones a iterar
  */
 public class ElementIterator<E> implements Iterator<E> {
     protected PositionList<E> lista;

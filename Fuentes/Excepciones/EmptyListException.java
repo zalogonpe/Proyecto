@@ -2,7 +2,7 @@ package Excepciones;
 
 /**
  * Modela la excepción que se produce ante una lista vacía.
- * @author Gonzalo Perez
+ * @author Gonzalo Perez & Juan Rapino
  */
 public class EmptyListException extends Exception {
   /**

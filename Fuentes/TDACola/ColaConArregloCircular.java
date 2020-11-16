@@ -8,7 +8,6 @@ import Excepciones.EmptyQueueException;
  * @param <E>: Tipo de dato de los elementos a almacenar en la cola.
  */
 public class ColaConArregloCircular<E> implements Queue<E> {
-
     protected E[] q;
     protected int front, rear;
 
@@ -52,15 +51,15 @@ public class ColaConArregloCircular<E> implements Queue<E> {
      * Redimensiona el tamaño de la cola aumentando su capacidad.
      */
     private void redimensionar() {
-      E[] aux=(E[]) new Object[q.length*2];
-      int ocupados=(q.length - front + rear) % q.length;
-      for (int i=0; i<ocupados; i++) {
-      	aux[i]=q[front];
-      	front=(front+1) % q.length;
+      E[] aux = (E[]) new Object[q.length*2];
+      int ocupados = (q.length - front + rear) % q.length;
+      for (int i = 0; i<ocupados; i++) {
+      	aux[i] = q[front];
+      	front = (front + 1) % q.length;
       }
-      rear=ocupados;
-      front=0;
-      q=aux;
+      rear = ocupados;
+      front = 0;
+      q = aux;
     }
 
     @Override

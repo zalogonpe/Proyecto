@@ -1,5 +1,10 @@
 package Programa;
 
+/**
+ * Clase que modela una transacción.
+ * @author Gonzalo Perez & Juan Rapino
+ *
+ */
 public class Transaccion {
 	//Atributos de instancia
 	private float monto;

@@ -84,24 +84,8 @@ public class Deque<E> implements java.util.Deque<E> {
 		return inserto;
 	}
 	
-	//------------------------------------------------------------------------------------//
-	/*	@Override
-	public boolean add(E elem) throws NullPointerException {
-		boolean insertado = false;
-
-		if(elem != null)
-			throw new NullPointerExxeption("El elemento pasado por parametro es un null");
-
-		lista.addLast(elem);
-		insertado = true;
-
-		return insertado;
-	}
-	*/
-	//-------------------------------------------------------------------------------------//
-	
 	/**
-	 * Consulta si un elemento pertenece a los elementos almacenados en el Deque.
+	 * Consulta si un elemento está almacenado en el Deque.
 	 * @return Retorna verdadero si el elemento pertenece al Deque, falso en caso contrario.
 	 */
 	public boolean contains(Object elem) {
@@ -353,7 +337,7 @@ public class Deque<E> implements java.util.Deque<E> {
 	}
 	
 	/**
-	 * Remueve la primera aparición de un elemento.
+	 * Remueve la primera aparición del elemento pasado por parámetro.
 	 * @param elem Elemento a remover del Deque.
 	 * @return Verdadero si el elemento pertenece al Deque y es eliminado, falso en caso contrario. 
 	 */
@@ -399,7 +383,7 @@ public class Deque<E> implements java.util.Deque<E> {
 	
 	/**
 	 * Remueve la primera aparición de un elemento del Deque y lo retorna.
-	 * @param elem Elemento a remover su primer aparción.
+	 * @param elem Elemento a remover su primera aparción.
 	 * @return Verdadero si elemento aparece y fue eliminado del Deque, falso en caso contrario.
 	 */
 	public boolean removeFirstOccurrence(Object elem) {
@@ -506,7 +490,7 @@ public class Deque<E> implements java.util.Deque<E> {
 	}
 	
 	/**
-	 * Consulta todos los elementos almacenados en el Deque y los inserta en un arreglo.
+	 * Consulta todos los elementos almacenados en el Deque y los retorna en un arreglo.
 	 * @return Retorna un arreglo que contiene todos los elementos almacenados en el Deque.
 	 */
 	public Object[] toArray() {
