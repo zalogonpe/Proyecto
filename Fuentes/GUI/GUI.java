@@ -139,19 +139,24 @@ public class GUI extends JFrame {
 	private class OyenteTransaccion implements ActionListener {
 		public void actionPerformed(ActionEvent evento) {
 			JOptionPane mensaje=new JOptionPane();
-			String montoEntrada=mensaje.showInputDialog(null, "Ingrese el monto de la transacción:", "", JOptionPane.QUESTION_MESSAGE);
+			String montoEntrada=mensaje.showInputDialog(null, "Ingrese el monto de la transacción:", "Monto", JOptionPane.QUESTION_MESSAGE);
 			float monto;
+			String descripcion="";
 			try {
 				if (montoEntrada!=null && !montoEntrada.equals("")) {
 					monto=Float.valueOf(montoEntrada);
-					cuenta.realizarTransaccion(monto);
-					etiquetaSaldo.setText("Saldo: $"+cuenta.consultarSaldo());
-					if (monto>0)
-						mensaje.showMessageDialog(null, "Se depositaron en la cuenta $"+monto, "Confirmación", JOptionPane.INFORMATION_MESSAGE);
-					else {
-						if (monto<0)
-							mensaje.showMessageDialog(null, "Se extrajeron de la cuenta $"+Math.abs(monto), "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+					descripcion=mensaje.showInputDialog(null, "Ingrese una descripción para la transacción:", "Descripción", JOptionPane.QUESTION_MESSAGE);
+					if (descripcion!=null && !descripcion.equals("")) {
+						cuenta.realizarTransaccion(monto, descripcion);
+						etiquetaSaldo.setText("Saldo: $"+cuenta.consultarSaldo());
+						if (monto>0)
+							mensaje.showMessageDialog(null, "Se depositaron en la cuenta $"+monto+" en caracter de "+descripcion, "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+						else {
+							if (monto<0)
+								mensaje.showMessageDialog(null, "Se extrajeron de la cuenta $"+Math.abs(monto)+" en caracter de "+descripcion, "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+						}
 					}
+					else mensaje.showMessageDialog(null, "No se ingreso una descripción válida.", "Advertencia", JOptionPane.WARNING_MESSAGE); 
 				}
 				else mensaje.showMessageDialog(null, "No se ingreso un monto válido.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 			}
@@ -167,16 +172,16 @@ public class GUI extends JFrame {
 			try {
 				if (evento.getActionCommand().equals("Reciente")) {
 					transaccion=cuenta.masReciente();
-					mensaje.showMessageDialog(null, transaccion.getTipo()+": $"+transaccion.getMonto(), "Operación más reciente", JOptionPane.INFORMATION_MESSAGE);
+					mensaje.showMessageDialog(null, transaccion.getTipo()+": $"+transaccion.getMonto()+"\nEn caracter de "+transaccion.getDescripcion(), "Operación más reciente", JOptionPane.INFORMATION_MESSAGE);
 				}
 				if (evento.getActionCommand().equals("Historica")) {
 					transaccion=cuenta.masHistorica();
-					mensaje.showMessageDialog(null, transaccion.getTipo()+": $"+transaccion.getMonto(), "Operación más historica", JOptionPane.INFORMATION_MESSAGE);
+					mensaje.showMessageDialog(null, transaccion.getTipo()+": $"+transaccion.getMonto()+"\nEn caracter de "+transaccion.getDescripcion(), "Operación más historica", JOptionPane.INFORMATION_MESSAGE);
 				}
 				if (evento.getActionCommand().equals("Costosa")) {
 					transaccion=cuenta.masCostosa();
 					if (transaccion!=null)
-						mensaje.showMessageDialog(null, transaccion.getTipo()+": $"+transaccion.getMonto(), "Operación más costosa", JOptionPane.INFORMATION_MESSAGE);
+						mensaje.showMessageDialog(null, transaccion.getTipo()+": $"+transaccion.getMonto()+"\nEn caracter de "+transaccion.getDescripcion(), "Operación más costosa", JOptionPane.INFORMATION_MESSAGE);
 					else mensaje.showMessageDialog(null, "No hay operaciones registradas para consultar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 				}
 			}

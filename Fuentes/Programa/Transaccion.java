@@ -9,6 +9,7 @@ public class Transaccion {
 	//Atributos de instancia
 	private float monto;
 	private String tipo;
+	private String descripcion;
 	
 	//Constructor
 	/**
@@ -16,12 +17,22 @@ public class Transaccion {
 	 * @param t Tipo de la transacción.
 	 * @param m Monto de la transacción.
 	 */
-	public Transaccion(String t,float m) {
-		tipo=t;
+	public Transaccion(float m, String t, String desc) {
 		monto=m;
+		tipo=t;
+		descripcion=desc;
 	}
 	
 	//Consultas
+	
+	/**
+	 * Consulta el monto de la transacción.
+	 * @return Retorna el monto de la transacción.
+	 */
+	public float getMonto() {
+		return monto;
+	}
+	
 	/**
 	 * Consulta el tipo de operación de la transacción.
 	 * @return Retorna el tipo de operación de la transacción.
@@ -29,11 +40,12 @@ public class Transaccion {
 	public String getTipo() {
 		return tipo;
 	}
+	
 	/**
-	 * Consulta el monto de la transacción.
-	 * @return Retorna el monto de la transacción.
+	 * Consulta la descripción de la transacción.
+	 * @return Retorn la descripción de la transacción.
 	 */
-	public float getMonto() {
-		return monto;
+	public String getDescripcion() {
+		return descripcion;
 	}
 }
