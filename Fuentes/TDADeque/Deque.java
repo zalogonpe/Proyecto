@@ -297,7 +297,7 @@ public class Deque<E> implements java.util.Deque<E> {
 	/**
 	 * Remueve el primer elemento del Deque retornandolo.
 	 * @return Retorna el elemento eliminado.
-	 * @throws Si el Deque está vacío.
+	 * @throws NoSuchElementException Si el Deque está vacío.
 	 */
 	public E pop() throws NoSuchElementException {
 		E elem=null;
@@ -318,7 +318,7 @@ public class Deque<E> implements java.util.Deque<E> {
 	/**
 	 * Remueve el elemento al principio del Deque.
 	 * @return Retorna el elemento eliminado.
-	 * @throws Si el Deque está vacío.
+	 * @throws NoSuchElementException Si el Deque está vacío.
 	 */
 	public E remove() throws NoSuchElementException {
 		E eliminado=null;
@@ -410,7 +410,7 @@ public class Deque<E> implements java.util.Deque<E> {
 	/**
 	 * Remueve el último elemento del Deque retornandolo.
 	 * @return Retorna el elemento eliminado.
-	 * @throws Si el Deque está vacío.
+	 * @throws NoSuchElementException Si el Deque está vacío.
 	 */
 	public E removeLast() throws NoSuchElementException {
 		E eliminado=null;

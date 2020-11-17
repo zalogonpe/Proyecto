@@ -15,6 +15,7 @@ import Excepciones.EmptyStackException;
 import TDAPila.PilaEnlazada;
 import TDAPila.Stack;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Clase que modela las funciones del sistema.
@@ -59,9 +60,19 @@ public class CuentaBancaria {
 	 * @throws BankException Si el historial de transacciones de la cuenta está vacío.
 	 */
 	public Transaccion masReciente() throws BankException {
-		if(historial.isEmpty())
-			throw new BankException("No se han realizado transacciones en la cuenta.");
-		return historial.getLast();
+		Transaccion masReciente;
+
+		try{
+			if(!historial.isEmpty())
+				masReciente = historial.getLast();
+
+			else throw new BankException("No se han realizado transacciones en la cuenta");
+
+		}catch(NoSuchElementException e){
+			throw new BankException("No se han realizado transacciones en la cuenta");
+		}
+
+		return masReciente;
 	}
 
 	/**
@@ -70,9 +81,19 @@ public class CuentaBancaria {
 	 * @throws BankException Si el historial de transacciones de la cuenta está vacío.
 	 */
 	public Transaccion masHistorica() throws BankException {
-		if(historial.isEmpty())
-			throw new BankException("No se han realizado transacciones en la cuenta.");
-		return historial.getFirst();
+		Transaccion masHistorica;
+
+		try{
+			if(!historial.isEmpty())
+				masHistorica = historial.getFirst();
+
+			else throw new BankException("No se han realizado transacciones en la cuenta");
+
+		}catch(NoSuchElementException e){
+			throw new BankException("No se han realizado transacciones en la cuenta");
+		}
+
+		return masHistorica;
 	}
 	
 	/**
@@ -108,7 +129,7 @@ public class CuentaBancaria {
 	 * @param monto Clave de las entradas a buscar.
 	 * @return Retorna una coleccion iterable de transacciones monto igual al dado.
 	 */
-	//T(n)= c1+c2+c3+c4+c5+  n(c6+c7+c8+c9)+ (el orden de findAll, creo que era 'n' peor caso no me acuerdo) + c10 = 2n ---> O(n)
+	//T(n)= c1+c2+c3+c4+c5+  n(c6+c7+c8+c9) + n + c10 = 2n ---> O(n)
 	public Iterable<Entry<Float, Transaccion>> mismoMonto(float monto) {
 		Dictionary<Float, Transaccion> diccionarioDeque = new DiccionarioConHashAbierto<Float, Transaccion>();
 		Iterable<Entry<Float,Transaccion>> mismoMonto = null;
