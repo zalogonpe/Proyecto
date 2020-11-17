@@ -123,7 +123,7 @@ public class GUI extends JFrame {
 				}
 				else {
 					aviso=new JOptionPane();
-					aviso.showMessageDialog(null, "La contraseña es invalida", "Error", JOptionPane.ERROR_MESSAGE);
+					aviso.showMessageDialog(null, "La contraseña es inválida.", "Error", JOptionPane.ERROR_MESSAGE);
 					cajaContraseña.setText("");
 				}
 			}
@@ -143,7 +143,7 @@ public class GUI extends JFrame {
 			float monto;
 			String descripcion="";
 			try {
-				if (montoEntrada!=null && !montoEntrada.equals("")) {
+				if (montoEntrada!=null && !montoEntrada.equals("") && !montoEntrada.equals("0") && !montoEntrada.equals("-0")) {
 					monto=Float.valueOf(montoEntrada);
 					descripcion=mensaje.showInputDialog(null, "Ingrese una descripción para la transacción:", "Descripción", JOptionPane.QUESTION_MESSAGE);
 					if (descripcion!=null && !descripcion.equals("")) {
@@ -156,9 +156,12 @@ public class GUI extends JFrame {
 								mensaje.showMessageDialog(null, "Se extrajeron de la cuenta $"+Math.abs(monto)+" en caracter de "+descripcion, "Confirmación", JOptionPane.INFORMATION_MESSAGE);
 						}
 					}
-					else mensaje.showMessageDialog(null, "No se ingreso una descripción válida.", "Advertencia", JOptionPane.WARNING_MESSAGE); 
+					else mensaje.showMessageDialog(null, "No se ingresó una descripción válida.", "Advertencia", JOptionPane.WARNING_MESSAGE); 
 				}
-				else mensaje.showMessageDialog(null, "No se ingreso un monto válido.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+				else mensaje.showMessageDialog(null, "No se ingresó un monto válido.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+			}
+			catch (NumberFormatException e) {
+				mensaje.showMessageDialog(null, "El monto debe ser un número.", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			catch (BankException e) {
 				mensaje.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -197,7 +200,7 @@ public class GUI extends JFrame {
 			Iterable<Entry<Float, Transaccion>> listadoOperaciones;
 			JOptionPane mensaje=new JOptionPane();
 			String montoEntrada=mensaje.showInputDialog(null, "Ingrese el monto de las transacciónes que desea consultar:", "", JOptionPane.QUESTION_MESSAGE);
-			if (montoEntrada!=null && !montoEntrada.equals("")) {
+			if (montoEntrada!=null && !montoEntrada.equals("") && !montoEntrada.equals("0") && !montoEntrada.equals("-0")) {
 				monto=Float.valueOf(montoEntrada);
 				listadoOperaciones=cuenta.mismoMonto(monto);
 				if (listadoOperaciones!=null) {
@@ -209,7 +212,7 @@ public class GUI extends JFrame {
 				}
 				else mensaje.showMessageDialog(null, "No hay operaciones registradas para consultar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 			}
-			else mensaje.showMessageDialog(null, "No se ingreso un monto válido.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+			else mensaje.showMessageDialog(null, "No se ingresó un monto válido.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 }

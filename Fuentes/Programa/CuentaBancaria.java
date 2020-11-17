@@ -38,7 +38,7 @@ public class CuentaBancaria {
 	/**
 	 * Genera una nueva transaccion agregandola al historial y modificando el saldo de la cuenta.
 	 * @param monto Monto de la nueva transacción.
-	 * @throws BankException Si tiene fondos insuficientes para realizar la transacción.
+	 * @throws BankException Si tiene fondos insuficientes para realizar la transacción o si el monto de la transacción es igual a 0.
 	 */
 	public void realizarTransaccion(float monto, String desc) throws BankException {
 		Transaccion nueva;
@@ -47,7 +47,11 @@ public class CuentaBancaria {
 				nueva=new Transaccion(Math.abs(monto), "Extracción", desc);
 			else throw new BankException("Fondos insuficientes en la cuenta.");
 		}
-		else nueva=new Transaccion(monto, "Deposito", desc);
+		else {
+			if (monto>0)
+				nueva=new Transaccion(monto, "Deposito", desc);
+			else throw new BankException("Monto inválido.");
+		}
 		historial.addLast(nueva);
 		saldo=saldo+monto;
 	}
@@ -150,6 +154,10 @@ public class CuentaBancaria {
 				while (!finalizoApellido && indice<contraseña.length()) {
 					leido = contraseña.charAt(indice);
 					indice++;
+					if (leido=='0' || leido=='1' || leido=='2' || leido=='3'|| leido=='4' || leido=='5' || leido=='6' || leido=='7' || leido=='8' || leido=='9') {
+						finalizoApellido=true;
+						esValida=false;
+					}
 					if (leido == 'x')
 						finalizoApellido = true;
 					else pilaAux.push(leido);
