@@ -35,7 +35,20 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.GUI (1)">
+    <configuration name="GUI (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GUI.GUI" />
+      <module name="Proyecto" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="GUI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="GUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Programa.GUI" />
       <module name="Proyecto" />
@@ -62,6 +75,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GUI (1)" />
         <item itemvalue="Application.GUI" />
       </list>
     </recent_temporary>
@@ -80,7 +94,11 @@
       <workItem from="1605213934519" duration="605000" />
       <workItem from="1605222050807" duration="1525000" />
       <workItem from="1605300071619" duration="1446000" />
-      <workItem from="1605315767283" duration="1038000" />
+      <workItem from="1605315767283" duration="1433000" />
+      <workItem from="1605394441317" duration="477000" />
+      <workItem from="1605395263384" duration="1258000" />
+      <workItem from="1605406213241" duration="402000" />
+      <workItem from="1605573725544" duration="2157000" />
     </task>
     <servers />
   </component>
@@ -100,21 +118,21 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603574155610" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1605228162355">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1605406618854">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605228162355" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1605228162354">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605406618854" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1605406618854">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605228162354" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1605228162354">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605406618854" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1605406618854">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605228162354" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1605228162354">
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605406618854" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1605406618854">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605228162354" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605406618854" />
   </component>
 </project>
