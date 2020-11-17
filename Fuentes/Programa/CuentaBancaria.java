@@ -64,19 +64,18 @@ public class CuentaBancaria {
 	 * @throws BankException Si el historial de transacciones de la cuenta está vacío.
 	 */
 	public Transaccion masReciente() throws BankException {
-		Transaccion masReciente;
-
-		try{
-			if(!historial.isEmpty())
-				masReciente = historial.getLast();
-
-			else throw new BankException("No se han realizado transacciones en la cuenta");
-
-		}catch(NoSuchElementException e){
-			throw new BankException("No se han realizado transacciones en la cuenta");
+		Transaccion reciente = null;
+		
+		try {
+			if(historial.isEmpty())
+				throw new BankException("No se han realizado transacciones en la cuenta.");
+			reciente = historial.getLast();
 		}
-
-		return masReciente;
+		catch (NoSuchElementException e) {
+			System.out.println(e.toString());
+		}
+		
+		return reciente;
 	}
 
 	/**
@@ -85,19 +84,18 @@ public class CuentaBancaria {
 	 * @throws BankException Si el historial de transacciones de la cuenta está vacío.
 	 */
 	public Transaccion masHistorica() throws BankException {
-		Transaccion masHistorica;
-
-		try{
-			if(!historial.isEmpty())
-				masHistorica = historial.getFirst();
-
-			else throw new BankException("No se han realizado transacciones en la cuenta");
-
-		}catch(NoSuchElementException e){
-			throw new BankException("No se han realizado transacciones en la cuenta");
+		Transaccion historica = null;
+		
+		try {
+			if(historial.isEmpty())
+				throw new BankException("No se han realizado transacciones en la cuenta.");
+			historica = historial.getFirst();
 		}
-
-		return masHistorica;
+		catch (NoSuchElementException e) {
+			System.out.println(e.toString());
+		}
+		
+		return historica;
 	}
 	
 	/**
@@ -133,7 +131,7 @@ public class CuentaBancaria {
 	 * @param monto Clave de las entradas a buscar.
 	 * @return Retorna una coleccion iterable de transacciones monto igual al dado.
 	 */
-	//T(n)= c1+c2+c3+c4+c5+  n(c6+c7+c8+c9) + n + c10 = 2n ---> O(n)
+	//T(n)= c1+c2+c3+c4+c5+  n(c6+c7+c8+c9)+ (el orden de findAll, creo que era 'n' peor caso no me acuerdo) + c10 = 2n ---> O(n)
 	public Iterable<Entry<Float, Transaccion>> mismoMonto(float monto) {
 		Dictionary<Float, Transaccion> diccionarioDeque = new DiccionarioConHashAbierto<Float, Transaccion>();
 		Iterable<Entry<Float,Transaccion>> mismoMonto = null;
