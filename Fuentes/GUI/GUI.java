@@ -91,10 +91,7 @@ public class GUI extends JFrame {
 			System.out.println(e.toString());
 		}
 	}
-	
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

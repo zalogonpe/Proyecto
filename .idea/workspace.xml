@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="6c6dc7fb-5f1d-4318-bbab-8aed5ded0735" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -98,7 +101,11 @@
       <workItem from="1605394441317" duration="477000" />
       <workItem from="1605395263384" duration="1258000" />
       <workItem from="1605406213241" duration="402000" />
-      <workItem from="1605573725544" duration="2157000" />
+      <workItem from="1605573725544" duration="2834000" />
+      <workItem from="1605598250814" duration="7056000" />
+      <workItem from="1605639346925" duration="1832000" />
+      <workItem from="1605707167453" duration="1193000" />
+      <workItem from="1605739296283" duration="1409000" />
     </task>
     <servers />
   </component>
@@ -114,25 +121,29 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605318278056" />
-    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1603574155610">
+    <state x="718" y="254" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1605740174885">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603574155610" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1605406618854">
+    <state x="718" y="254" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1605740174885" />
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1605739988594">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605406618854" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1605406618854">
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1605739988594" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1605654903452">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605406618854" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1605406618854">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605654903452" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1605654903452">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605406618854" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1605406618854">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605654903452" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1605654903452">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605406618854" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605654903452" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1605654903452">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605654903452" />
   </component>
 </project>

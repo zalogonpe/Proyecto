@@ -39,6 +39,7 @@ public class CuentaBancaria {
 	/**
 	 * Genera una nueva transaccion agregandola al historial y modificando el saldo de la cuenta.
 	 * @param monto Monto de la nueva transacción.
+	 * @param desc Descripción de la transacción.
 	 * @throws BankException Si tiene fondos insuficientes para realizar la transacción o si el monto de la transacción es igual a 0.
 	 */
 	public void realizarTransaccion(float monto, String desc) throws BankException {

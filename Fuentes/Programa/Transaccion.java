@@ -16,6 +16,7 @@ public class Transaccion {
 	 * Crea una nueva transacción con el monto pasado por parámetro.
 	 * @param t Tipo de la transacción.
 	 * @param m Monto de la transacción.
+	 * @param desc Descripción de la transacción.
 	 */
 	public Transaccion(float m, String t, String desc) {
 		monto=m;
