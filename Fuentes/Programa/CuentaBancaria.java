@@ -131,7 +131,6 @@ public class CuentaBancaria {
 	 * @param monto Clave de las entradas a buscar.
 	 * @return Retorna una coleccion iterable de transacciones monto igual al dado.
 	 */
-	//T(n)= c1+c2+c3+c4+c5+  n(c6+c7+c8+c9)+ (el orden de findAll, creo que era 'n' peor caso no me acuerdo) + c10 = 2n ---> O(n)
 	public Iterable<Entry<Float, Transaccion>> mismoMonto(float monto) {
 		Dictionary<Float, Transaccion> diccionarioDeque = new DiccionarioConHashAbierto<Float, Transaccion>();
 		Iterable<Entry<Float,Transaccion>> mismoMonto = null;

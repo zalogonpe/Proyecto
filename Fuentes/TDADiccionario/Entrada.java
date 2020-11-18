@@ -8,8 +8,8 @@ package TDADiccionario;
  * @param <V> Tipo de dato del valor de la entrada.
  */
 public class Entrada<K, V> implements Entry<K, V> {
-  protected K clave;
-  protected V valor;
+  private K clave;
+  private V valor;
   
   //Constructor
   /**

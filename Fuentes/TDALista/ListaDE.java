@@ -38,7 +38,7 @@ public class ListaDE<E> implements PositionList<E> {
     @Override
     public Position<E> first() throws EmptyListException {
         if(size==0)
-            throw new EmptyListException("Lista vacia.");
+            throw new EmptyListException("La lista está vacia.");
 
         return header.getNext();
     }
@@ -46,7 +46,7 @@ public class ListaDE<E> implements PositionList<E> {
     @Override
     public Position<E> last() throws EmptyListException {
         if(size==0)
-            throw new EmptyListException("Lista vacia.");
+            throw new EmptyListException("La lista está vacia.");
 
         return trailer.getPrev();
     }
@@ -154,7 +154,7 @@ public class ListaDE<E> implements PositionList<E> {
     			throw new InvalidPositionException("La posición es inválida");
     		return (NodoD<E>) p;
         } catch(ClassCastException e) {
-            throw new InvalidPositionException("Posicion invalida.");
+            throw new InvalidPositionException("La posicion es inválida.");
         }
     }
 }

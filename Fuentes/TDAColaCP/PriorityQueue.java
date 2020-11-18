@@ -6,7 +6,6 @@ import Excepciones.InvalidKeyException;
  * Interface PriorityQueue
  * @author Cátedra de Estructuras de Datos, Departamento de Cs. e Ing. de la Computación, UNS.
  */
- 
 public interface PriorityQueue<K, V> {
 
 	/**
