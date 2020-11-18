@@ -25,7 +25,6 @@ public class Transaccion {
 	}
 	
 	//Consultas
-	
 	/**
 	 * Consulta el monto de la transacción.
 	 * @return Retorna el monto de la transacción.
@@ -44,7 +43,7 @@ public class Transaccion {
 	
 	/**
 	 * Consulta la descripción de la transacción.
-	 * @return Retorn la descripción de la transacción.
+	 * @return Retorna la descripción de la transacción.
 	 */
 	public String getDescripcion() {
 		return descripcion;

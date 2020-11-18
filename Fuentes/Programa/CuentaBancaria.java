@@ -129,7 +129,7 @@ public class CuentaBancaria {
 
 	/**
 	 * Consulta todas las transacciones realizadas con igual monto al dado y los retorna.
-	 * @param monto Clave de las entradas a buscar.
+	 * @param monto Monto de las transacciones a buscar.
 	 * @return Retorna una coleccion iterable de transacciones monto igual al dado.
 	 */
 	public Iterable<Entry<Float, Transaccion>> mismoMonto(float monto) {
@@ -156,7 +156,7 @@ public class CuentaBancaria {
 	/**
 	 * Verifica si la contraseña pasada por parámetro respeta el formato especificado.
 	 * De ser así, se brinda acceso al sistema, en caso contrario la aplicación permanece bloqueada. 
-	 * @param contraseña Es el código de acceso ingresado.
+	 * @param contraseña Código de acceso ingresado.
 	 * @return Verdadero si el código de acceso es valido, falso en caso contrario.
 	 */
 	public boolean validarAcceso(String contraseña) {
