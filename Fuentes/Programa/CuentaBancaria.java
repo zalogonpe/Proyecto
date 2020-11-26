@@ -203,10 +203,10 @@ public class CuentaBancaria {
 				}
 				if (!colaAux.isEmpty())
 					esValida = false;
-			}
+			//}
 			if (indice!=contraseña.length() || !pilaAux.isEmpty() || !colaAux.isEmpty())
 				esValida = false;
-		//}
+		}
 		catch (EmptyStackException | EmptyQueueException e) {
 			System.out.println(e.toString());
 		}
