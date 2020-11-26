@@ -168,7 +168,7 @@ public class CuentaBancaria {
 		Queue<Character> colaAux = new ColaConArregloCircular<Character>();
 		try {
 			//Ciclo que recorre la cadena en su totalidad
-			//while (esValida && indice<contraseña.length()) {
+			while (esValida && indice<contraseña.length()) {
 				//Ciclo que recorrer la primera parte de la cadena(A)
 				while (!finalizoApellido && indice<contraseña.length()) {
 					leido = contraseña.charAt(indice);
