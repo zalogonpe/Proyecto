@@ -167,43 +167,38 @@ public class CuentaBancaria {
 		Stack<Character> pilaAux = new PilaEnlazada<Character>();
 		Queue<Character> colaAux = new ColaConArregloCircular<Character>();
 		try {
-			//Ciclo que recorre la cadena en su totalidad
-			//while (esValida && indice<contraseña.length()) {
-				//Ciclo que recorrer la primera parte de la cadena(A)
-				while (!finalizoApellido && indice<contraseña.length()) {
-					leido = contraseña.charAt(indice);
-					indice++;
-					if (leido=='0' || leido=='1' || leido=='2' || leido=='3'|| leido=='4' || leido=='5' || leido=='6' || leido=='7' || leido=='8' || leido=='9') {
-						finalizoApellido=true;
-						esValida=false;
-					}
-					if (leido == 'x')
-						finalizoApellido = true;
-					else pilaAux.push(leido);
+			//Ciclo que recorrer la primera parte de la cadena(A)
+			while (!finalizoApellido && indice<contraseña.length()) {
+				leido = contraseña.charAt(indice);
+				indice++;
+				if (leido=='0' || leido=='1' || leido=='2' || leido=='3'|| leido=='4' || leido=='5' || leido=='6' || leido=='7' || leido=='8' || leido=='9') {
+					finalizoApellido=true;
+					esValida=false;
 				}
-				if (!finalizoApellido)
-					esValida = false;
-				//Ciclo que recorre la primera aparición de la cadena A' después de que aparece una 'x'
-				while (esValida && indice<contraseña.length() && !pilaAux.isEmpty()) {
-					leido = contraseña.charAt(indice);
-					indice++;
-					if (leido == pilaAux.top())
-						colaAux.enqueue(pilaAux.pop());
-					else esValida = false;
-				}
-				if (!(indice<contraseña.length()) || !pilaAux.isEmpty())
-					esValida = false;
-				//Ciclo que recorre la segunda aparición de la cadena A'
-				while (esValida && indice<contraseña.length() && !colaAux.isEmpty()) {
-					leido = contraseña.charAt(indice);
-					indice++;
-					if (leido == colaAux.front())
-						colaAux.dequeue();
-					else esValida = false;
-				}
-				if (!colaAux.isEmpty())
-					esValida = false;
-			//}
+				if (leido == 'x')
+					finalizoApellido = true;
+				else pilaAux.push(leido);
+			}
+			if (!finalizoApellido)
+				esValida = false;
+			//Ciclo que recorre la primera aparición de la cadena A' después de que aparece una 'x'
+			while (esValida && indice<contraseña.length() && !pilaAux.isEmpty()) {
+				leido = contraseña.charAt(indice);
+				indice++;
+				if (leido == pilaAux.top())
+					colaAux.enqueue(pilaAux.pop());
+				else esValida = false;
+			}
+			if (!(indice<contraseña.length()) || !pilaAux.isEmpty())
+				esValida = false;
+			//Ciclo que recorre la segunda aparición de la cadena A'
+			while (esValida && indice<contraseña.length() && !colaAux.isEmpty()) {
+				leido = contraseña.charAt(indice);
+				indice++;
+				if (leido == colaAux.front())
+					colaAux.dequeue();
+				else esValida = false;
+			}
 			if (indice!=contraseña.length() || !pilaAux.isEmpty() || !colaAux.isEmpty())
 				esValida = false;
 		}
